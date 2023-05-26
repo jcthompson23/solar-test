@@ -1,0 +1,105 @@
+.nodisplay{
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.ocultar{
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+iframe{
+    width: 100% !important;
+    height: 100dvh !important;
+    border: none !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}
+.temas{
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+}
+.siguiente{
+    cursor: pointer !important;
+    transition: transform .2s;
+    transform: translate(-20px, calc(-45vh)) !important;
+}
+.atras{
+    cursor: pointer !important;
+    transition: transform .2s;
+    transform: translate(20px, calc(-45vh)) !important;
+}
+
+.siguiente *{
+    pointer-events: none !important;
+}
+.atras *{
+    pointer-events: none !important;
+}
+
+.siguiente:hover{
+    transform: scale(1.1);
+    
+}
+.atras:hover{
+    transform: scale(1.1);
+} 
+
+.avance{
+    width: 0%;
+}
+
+.nop{
+    pointer-events: none !important;
+    opacity: 0 !important;
+    cursor: auto !important;
+    display: none !important;
+}
+
+.nop *{
+    pointer-events: none !important;
+
+}
+
+.nop2{
+    pointer-events: none !important;
+    opacity: 0 !important;
+    cursor: auto !important;
+    display: none !important;
+}
+
+.flecha{
+    cursor: pointer !important;
+}
+
+@media (max-width: 768px) { 
+    .red{
+        display: none !important;
+    }
+    .red2{
+        display: none !important;
+        transform: scale(.7) !important;
+        transform-origin: right center !important;
+    }
+    .logo{
+        transform: scale(.7) !important;
+        transform-origin: left center !important;   
+        transform: translate(-50px, 0px) !important; 
+    }
+    .siguiente{
+        transform: translate(0px, 0px) !important;
+    }
+    .atras{
+        transform: translate(0px, 0px) !important;
+    }
+    .redes{
+        transform: translate(50px, 0px) !important;   
+    }
+
+
+}
+
+.btn-redes{
+    cursor: pointer !important;
+    transition: transform .2s !important;
+}
