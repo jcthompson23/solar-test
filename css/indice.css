@@ -51,6 +51,7 @@ iframe{
 
 .nop{
     pointer-events: none !important;
+    display: none !important;
     opacity: 0 !important;
     cursor: auto !important;
     display: none !important;
@@ -63,6 +64,7 @@ iframe{
 
 .nop2{
     pointer-events: none !important;
+    display: none !important;
     opacity: 0 !important;
     cursor: auto !important;
     display: none !important;
@@ -70,6 +72,23 @@ iframe{
 
 .flecha{
     cursor: pointer !important;
+}
+
+
+.btn-redes{
+    cursor: pointer !important;
+    transition: transform .2s !important;
+}
+
+
+.cel{
+    display: none !important;
+}
+.ipad{
+    display: none !important;
+}
+.escritorio{
+    display: block !important;
 }
 
 @media (max-width: 768px) { 
@@ -94,12 +113,63 @@ iframe{
     }
     .redes{
         transform: translate(50px, 0px) !important;   
-    }
-
-
+    }    
 }
 
-.btn-redes{
-    cursor: pointer !important;
-    transition: transform .2s !important;
+@media (max-width: 1024px) { 
+    .cel{
+        display: none !important;
+    }
+    .ipad{
+        display: block !important;
+    }
+    .escritorio{
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) { 
+    .cel{
+        display: block !important;
+    }
+    .ipad{
+        display: none !important;
+    }
+    .escritorio{
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+
+
+/* scrollbar */
+*::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+*::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-button:increment,
+*::-webkit-scrollbar-button {
+    display: none;
+}
+
+*::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 6px;
 }

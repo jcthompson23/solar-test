@@ -35,7 +35,7 @@ function resize(){
     //console.log("resize...")
 
     let hy=document.querySelector("[hyp_dn]");
-    let hya=hy.getAttribute("hyp_dn")
+    let hya=hy.getAttribute("hyp_dn");
     let HP=HYPE.documents[hya];
 
     if(espera)clearTimeout(espera);

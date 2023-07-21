@@ -9,6 +9,18 @@ window.addEventListener("load",function(){
     let api={};
     let err=[];
 
+    let escenas=["portada","pregunta1","pregunta2","pregunta3","pregunta4","pregunta5","pregunta6","pregunta7","resumen","resultado"];
+    window.escenaActual=function(){
+        return escenas[actual];
+    }
+    window.getGlobal=function(gvar){
+        if(arguments.length==0){
+            return g;
+        }else{
+            return g[gvar]
+        }        
+    }
+
     msg=new msgPost(recive);
 
     $(".barrasuperior").addClass("ocultar")
@@ -40,7 +52,6 @@ window.addEventListener("load",function(){
             $(".avance").css("opacity",1)
         },500)        
     })
-
     function generarIframes(){
         let htmls="";
         for(let i in EX.ITM[idioma]){
@@ -53,7 +64,6 @@ window.addEventListener("load",function(){
         }
         gsap.set(".frm[n='0']",{opacity:0})
     }
-
     function iniciar(){
         generarIframes();
         asignaEventos();
@@ -65,7 +75,6 @@ window.addEventListener("load",function(){
             gsap.to(".barrasuperior",{opacity:1})
         }})        
     }
-
     function asignaEventos(){
         $(".siguiente").off("click").on("click",function(){
             ir(actual+1)
@@ -79,16 +88,12 @@ window.addEventListener("load",function(){
             }else{
                 $(".red3").css("display","none");
             }
-            
         })
-
     }
-    
     function mueveAvance(){
         let p = ((actual/(total-1))*100)
         gsap.to(".avance",{width:p+"%"})
     }
-
     function ir(n){
         console.log("ir - ",EX.ITM[idioma][n].archivo)
         if(n<0 || n>=total) return 0;
@@ -106,16 +111,15 @@ window.addEventListener("load",function(){
             gsap.to(".frm[n='"+i+"']",{x:((i-n)*100)+"vw"})
         }
 
-        actual=n;    
+        actual=n;
 
         mueveAvance();
         validasiguiente();
     }
-
     function validasiguiente(){
         //console.log("actual - ",actual)
         switch(actual){
-            case 1:
+            case 1:  // Nombre de la página: Portada
                 if(g.aplicacion){
                     console.log("aplicacion - ",g.aplicacion)
                     $(".siguiente").removeClass("nodisplay")
@@ -123,7 +127,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 2:
+            case 2: // Nombre de la página: Pregunta 1
                 if(g.modulo){
                     console.log("modulo - ",g.modulo)
                     $(".siguiente").removeClass("nodisplay")
@@ -131,7 +135,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 3:
+            case 3:  // Nombre de la página: Pregunta 2
                 if(g.area){
                     console.log("area - ",g.area)
                     $(".siguiente").removeClass("nodisplay")
@@ -139,7 +143,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 4:
+            case 4: // Nombre de la página: Pregunta 3
                 if(g.orientacion_sol){
                     console.log("orientacion_sol - ",g.orientacion_sol)
                     $(".siguiente").removeClass("nodisplay")
@@ -147,7 +151,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 5:                
+            case 5:     // Nombre de la página: Pregunta 4            
                 if(g.orientacion_lugar){
                     console.log("orientacion_lugar - ",g.orientacion_lugar)
                     if((g.aplicacion=="ventana" || g.aplicacion=="barandal" || g.aplicacion=="fachada") && 
@@ -167,7 +171,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 6:
+            case 6: // Nombre de la página: Pregunta 5
                 if(g.estado && g.ciudad){
                     console.log("estado,ciudad - ",g.estado,g.ciudad)
                     $(".siguiente").removeClass("nodisplay")
@@ -175,7 +179,7 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 7:
+            case 7: // Nombre de la página: Pregunta 6
                 if(g.monto && g.tarifa){
                     console.log("monto,tarifa - ",g.monto,g.tarifa)
                     $(".siguiente").removeClass("nodisplay")
@@ -183,17 +187,16 @@ window.addEventListener("load",function(){
                     $(".siguiente").addClass("nodisplay")    
                 }
             break;
-            case 8:
+            case 8: // Nombre de la página: Pregunta 7
                 $(".siguiente").addClass("nodisplay")
                 msg.reenvia(msgs["S8"],JSON.stringify({"file":nombreArchivoCompleto,"cmd":"getG","soy":"indice","valor":g,"err":err}))
             break;
-            case 9:
+            case 9: // Nombre de la página: Resultados
                 $(".siguiente").addClass("nodisplay")
                 msg.reenvia(msgs["S9"],JSON.stringify({"file":nombreArchivoCompleto,"cmd":"getApi","soy":"indice","valor":api}))
             break;
         }
     }
-
     function opacarPlantilla(){
         $(".pie,.barrasuperior").addClass("nop")
         $(".siguiente,.atras").addClass("nop2")
@@ -205,10 +208,9 @@ window.addEventListener("load",function(){
         $(".siguiente,.atras").css("opacity",0)  
         $(".siguiente,.atras").removeClass("nop2")
 
-        gsap.to([".pie",".barrasuperior"],{opacity:1,delay:1.5});
-        gsap.to([".siguiente",".atras"],{opacity:1,delay:1.5});
+        gsap.to([".pie",".barrasuperior"],{opacity:1,delay:0});
+        gsap.to([".siguiente",".atras"],{opacity:1,delay:0});
     }
-
     function strLimpio(str){
         str=String(str).toLowerCase();
         str=str.split("á").join("a");
@@ -219,7 +221,6 @@ window.addEventListener("load",function(){
         str=str.split("ñ").join("n");
         return str;
     }
-
     function resetall(){
         g=null;
         g={};
@@ -235,9 +236,7 @@ window.addEventListener("load",function(){
                 $(this).attr("src",`${"./"+EX.ITM[idioma][Number(n)].carpeta+"/"+EX.ITM[idioma][Number(n)].archivo}`);
             }
         });
-        
     }
-
     function recive(d){
         if(validaMsg(d)){
             let data=JSON.parse(d.data);
@@ -247,7 +246,7 @@ window.addEventListener("load",function(){
             let acciones={
                 "ir":()=>{if(data.reset){resetall()};ir(data.val)},
                 "opacaPlantilla":()=>{ opacarPlantilla() },
-                "normalPlantilla":()=>{ normalPlantilla() },
+                "normalPlantilla":()=>{ setTimeout(()=>{normalPlantilla()},1800) },
                 "get":()=>{msg.reenvia(d,{"cmd":"get","var":data.var,"valor":g[data.var]})},
                 "set":()=>{g[data.var]=data.valor;if(data.var=="estado"){g["estado2"]=data.valor2};if(data.var=="ciudad"){g["ciudad2"]=data.valor2};validasiguiente();api=""},
                 "getG":()=>{msg.reenvia(d,{"cmd":"getG","soy":"indice","valor":g})},
@@ -337,12 +336,10 @@ window.addEventListener("load",function(){
                             message: error,
                         });
                     });
-                       
                 }
             }
             if(acciones[data.cmd])acciones[data.cmd]();
         }
     }
-
 })
 

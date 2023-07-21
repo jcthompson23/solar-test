@@ -152,3 +152,31 @@ path[estado]{
         font-size: 22px !important;
     }
 }
+
+
+/* scrollbar */
+*::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+*::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-button:increment,
+*::-webkit-scrollbar-button {
+    display: none;
+}
+
+*::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #c4c4c4;
+    border-radius: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 6px;
+}
